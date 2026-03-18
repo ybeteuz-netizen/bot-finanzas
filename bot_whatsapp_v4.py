@@ -812,7 +812,7 @@ def procesar_texto(telefono, texto):
             "- ver presupuestos"
         )
 
-        if data["accion"] == "guardar":
+    if data["accion"] == "guardar":
         guardar_movimiento(
             telefono,
             data["tipo"],
