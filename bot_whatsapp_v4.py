@@ -813,34 +813,29 @@ def procesar_texto(telefono, texto):
         )
 
     if data["accion"] == "guardar":
-        movimiento_id = guardar_movimiento(
-            telefono,
-            data["tipo"],
-            data["categoria"],
-            data["concepto"],
-            data["monto"],
-            data["metodo"]
-        )
+    guardar_movimiento(
+        telefono,
+        data["tipo"],
+        data["categoria"],
+        data["concepto"],
+        data["monto"],
+        data["metodo"]
+    )
 
-        mensaje = (
-            f"{data['tipo'].capitalize()} registrado ✅\n"
-            f"ID: {movimiento_id}\n"
-            f"{data['categoria']} · {data['concepto']}\n"
-            f"${data['monto']:,.2f}\n"
-            f"Metodo: {data['metodo'] or '-'}"
-        )
+    mensaje = (
+        f"{data['tipo'].capitalize()} registrado ✅\n"
+        f"{data['categoria']} · {data['concepto']}\n"
+        f"${data['monto']:,.2f}\n"
+        f"Metodo: {data['metodo'] or '-'}"
+    )
 
-        alerta_presupuesto = revisar_presupuesto(telefono, data["categoria"])
+                alerta_presupuesto = revisar_presupuesto(telefono, data["categoria"])
         if alerta_presupuesto:
             mensaje += f"\n\n{alerta_presupuesto}"
 
         alerta_fijos = revisar_fijos(telefono)
         if alerta_fijos:
             mensaje += f"\n\n{alerta_fijos}"
-
-        patrones = patrones_inteligentes(telefono)
-        if patrones:
-            mensaje += f"\n\n{patrones}"
 
         return mensaje
 
