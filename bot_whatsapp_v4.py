@@ -812,24 +812,24 @@ def procesar_texto(telefono, texto):
             "- ver presupuestos"
         )
 
-    if data["accion"] == "guardar":
-    guardar_movimiento(
-        telefono,
-        data["tipo"],
-        data["categoria"],
-        data["concepto"],
-        data["monto"],
-        data["metodo"]
-    )
+        if data["accion"] == "guardar":
+        guardar_movimiento(
+            telefono,
+            data["tipo"],
+            data["categoria"],
+            data["concepto"],
+            data["monto"],
+            data["metodo"]
+        )
 
-    mensaje = (
-        f"{data['tipo'].capitalize()} registrado ✅\n"
-        f"{data['categoria']} · {data['concepto']}\n"
-        f"${data['monto']:,.2f}\n"
-        f"Metodo: {data['metodo'] or '-'}"
-    )
+        mensaje = (
+            f"{data['tipo'].capitalize()} registrado ✅\n"
+            f"{data['categoria']} · {data['concepto']}\n"
+            f"${data['monto']:,.2f}\n"
+            f"Metodo: {data['metodo'] or '-'}"
+        )
 
-                alerta_presupuesto = revisar_presupuesto(telefono, data["categoria"])
+        alerta_presupuesto = revisar_presupuesto(telefono, data["categoria"])
         if alerta_presupuesto:
             mensaje += f"\n\n{alerta_presupuesto}"
 
