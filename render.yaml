@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: bot-finanzas
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn bot_whatsapp_v4:app

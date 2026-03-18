@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interfaz dentro de iPhone</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f3f3f3;
+      font-family: 'DM Sans', sans-serif;
+      padding: 24px;
+    }
+
+    /* CONTENEDOR GENERAL */
+    .mockup {
+      position: relative;
+      width: min(860px, 92vw);
+      aspect-ratio: 1179 / 1130;
+    }
+
+    .phone-photo {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* PANTALLA CALIBRADA PARA TU FOTO */
+    .screen {
+  position: absolute;
+  left: 38.15%;
+  top: 7.9%;
+  width: 20.4%;
+  height: 58.6%;
+  background: #ffffff;
+  border-radius: 38px;
+  overflow: hidden;
+  padding: 8% 7% 7%;
+}
+
+    /* Isla dinámica */
+    .dynamic-island {
+  position: absolute;
+  top: 2.1%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 31%;
+  height: 3.6%;
+  background: #000;
+  border-radius: 999px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+    /* CONTENIDO APP */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+      height: 100%;
+      align-content: start;
+    }
+
+    .item {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 24px;
+      padding: 14px 12px;
+      min-height: 84px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .icon-wrap {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-wrap svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    .label {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  color: rgba(20,20,20,0.96);
+}
+
+    .item:nth-child(1) .icon-wrap { background: rgba(96,165,250,0.15); }
+    .item:nth-child(2) .icon-wrap { background: rgba(167,139,250,0.15); }
+    .item:nth-child(3) .icon-wrap { background: rgba(52,211,153,0.15); }
+    .item:nth-child(4) .icon-wrap { background: rgba(251,191,36,0.15); }
+    .item:nth-child(5) .icon-wrap { background: rgba(251,113,133,0.15); }
+    .item:nth-child(6) .icon-wrap { background: rgba(34,211,238,0.15); }
+
+    /* Responsive fino */
+    @media (max-width: 700px) {
+      .screen {
+        padding: 9% 7.5% 7.5%;
+      }
+
+      .item {
+        min-height: 120px;
+        padding: 11px 10px;
+        border-radius: 20px;
+      }
+
+      .icon-wrap {
+        width: 28px;
+        height: 28px;
+        border-radius: 10px;
+      }
+
+      .icon-wrap svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .label {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mockup">
+    <img class="phone-photo" src="iphone-mano.png" alt="iPhone en mano">
+
+    <div class="screen">
+      <div class="dynamic-island"></div>
+
+      <div class="grid">
+        <div class="item">
+          <div class="icon-wrap">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="rgba(96,165,250,1)">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+            </svg>
+          </div>
+          <span class="label">Detección<br>de bloqueo</span>
+        </div>
+
+        <div class="item">
+          <div class="icon-wrap">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="rgba(167,139,250,1)">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" />
+            </svg>
+          </div>
+          <span class="label">Escaneo de<br>componentes</span>
+        </div>
+
+        <div class="item">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24">
+              <path fill="rgba(52,211,153,1)" fill-rule="evenodd" d="M3.75 6.75a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-.037c.856-.174 1.5-.93 1.5-1.838v-2.25c0-.907-.644-1.664-1.5-1.837V9.75a3 3 0 0 0-3-3h-15Zm15 1.5a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5h-15a1.5 1.5 0 0 1-1.5-1.5v-6a1.5 1.5 0 0 1 1.5-1.5h15ZM4.5 9.75a.75.75 0 0 0-.75.75V15c0 .414.336.75.75.75H18a.75.75 0 0 0 .75-.75v-4.5a.75.75 0 0 0-.75-.75H4.5Z" clip-rule="evenodd"/>
+              <path d="M11.5 9.75L9 12.5h3L10.5 15.25" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <span class="label">Capacidad<br>de batería</span>
+        </div>
+
+        <div class="item">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="17" width="5" height="5" rx="1.2" fill="rgba(251,191,36,1)"/>
+              <rect x="9.5" y="11" width="5" height="11" rx="1.2" fill="rgba(251,191,36,1)"/>
+              <rect x="17" y="4" width="5" height="18" rx="1.2" fill="rgba(251,191,36,1)"/>
+            </svg>
+          </div>
+          <span class="label">Celular<br>y SIM</span>
+        </div>
+
+        <div class="item">
+          <div class="icon-wrap">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="rgba(251,113,133,1)">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+            </svg>
+          </div>
+          <span class="label">Dispositivo<br>auténtico</span>
+        </div>
+
+        <div class="item">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="rgba(34,211,238,1)" stroke-width="1.8"/>
+              <path d="M7.5 12.5l3 3 6-6" stroke="rgba(34,211,238,1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="label">Borrado<br>seguro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

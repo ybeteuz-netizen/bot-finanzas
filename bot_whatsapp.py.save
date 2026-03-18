@@ -1,0 +1,63 @@
+from flask import Flask, request
+import requests
+
+app = Flask(__name__)
+
+TOKEN = "PEGA_AQUI_TU_TOKEN"
+PHONE_ID = "951141324760103"
+VERIFY_TOKEN = "mi_token_seguro_123"
+
+@app.route("/webhook", methods=["GET", "POST"])
+def webhook():
+    if request.method == "GET":
+        token = request.args.get("hub.verify_token")
+        challenge = request.args.get("hub.challenge")
+
+        if token == VERIFY_TOKEN:
+            return challenge, 200
+        return "Token invalido", 403
+
+    if request.method == "POST":
+        data = request.json
+        print("POST recibido:", data)
+
+        try:
+            mensaje = data["entry"][0]["changes"][0]["value"]["messages"][0]
+            texto = mensaje["text"]["body"]
+            numero = mensaje["from"]
+
+            responder(numero, texto)
+
+        except Exception as e:
+            print("Error procesando mensaje:", e)
+
+        return "ok", 200
+
+def enviar_mensaje(numero, texto):
+    url = f"https://graph.facebook.com/v22.0/{PHONE_ID}/messages"
+
+    headers = {
+        "Authorization": f"Bearer {TOKEN}",
+        "Content-Type": "application/json"
+    }
+
+    data = {
+        "messaging_product": "whatsapp",
+        "to": numero,
+        "type": "text",
+        "text": {"body": texto}
+    }
+
+    r = requests.post(url, headers=headers, json=data)
+    print("Respuesta de Meta:", r.status_code, r.text)
+
+def responder(numero, texto):
+    texto = texto.strip().lower()
+
+    if texto == "hola":
+        enviar_mensaje(numero, "Hola 👋 ya estoy funcionando.")
+    else:
+        enviar_mensaje(numero, f"Recibi: {texto}")
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5050, debug=True)
